@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  thermokit-linux:
+    name: ThermoKit tests (Linux)
+    runs-on: ubuntu-latest
+    container: swift:6.2-noble
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test
+        working-directory: ThermoKit
+        run: swift test
+
+  app-ios:
+    name: iOS app build
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -s "$(ls -d /Applications/Xcode_16*.app | sort -V | tail -1)"
+      - name: ThermoKit tests (macOS)
+        working-directory: ThermoKit
+        run: swift test
+      - name: Build app for the iOS Simulator
+        run: |
+          xcodebuild build \
+            -project App/ThermoCalc.xcodeproj \
+            -scheme ThermoCalc \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO
