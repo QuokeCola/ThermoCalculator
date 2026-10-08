@@ -67,7 +67,7 @@ struct SolverTests {
     }
 
     @Test func lowPressureSuperheatedUsesLogInterpolation() throws {
-        // Reference (IAPWS-IF97): 0.2 bar, 200 °C → v = 10.91 m³/kg; linear-in-p interpolation would give ~26.
+        // Reference (IAPWS-IF97): 0.2 bar, 200 °C → v = 10.91 m³/kg; linear-in-p interpolation would give 21.8.
         let s = try solve("p=0.2bar, T=200C")
         #expect(close(s.v, 10.91, rel: 0.01))
     }

@@ -51,7 +51,7 @@ Any two different properties, separated by a comma or semicolon:
 - **Superheated vapor / supercritical:** linear in T within a pressure sub-table. Between
   sub-tables values are interpolated in log p (and v as log v), because linear-in-p
   interpolation is badly off across the widely spaced low-pressure tables
-  (at 0.2 bar, 200 °C it gives v ≈ 26 m³/kg instead of 10.9). Subcritical sub-tables are
+  (at 0.2 bar, 200 °C it gives v ≈ 21.8 m³/kg instead of 10.9). Subcritical sub-tables are
   compared at equal superheat T − Tsat.
 - **Compressed liquid:** there is no Table A-5 yet, so it uses the saturated liquid at the
   same T, with h ≈ hf + vf·(p − psat). These results are marked as approximate.
